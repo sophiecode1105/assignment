@@ -12,23 +12,11 @@ const Routers = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
-      </Routes>
-      <Routes>
         <Route path="/alpha" element={<FallBack />} />
-      </Routes>
-      <Routes>
         <Route path="/bravo" element={<FallBack />} />
-      </Routes>
-      <Routes>
         <Route path="/charlie" element={<FallBack />} />
-      </Routes>
-      <Routes>
         <Route path="/delta" element={<FallBack />} />
-      </Routes>
-      <Routes>
         <Route path="/echo" element={<FallBack />} />
-      </Routes>
-      <Routes>
         <Route path="/result" element={<Result />} />
       </Routes>
     </BrowserRouter>
