@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
+  /* border: 1px solid black; */
   display: flex;
   align-items: center;
   width: 95%;
@@ -18,7 +19,6 @@ const TitleWrap = styled.div`
   justify-content: space-between;
   width: 60%;
   height: 40px;
-  margin-left: 30.45px;
 `;
 
 const NavTitle = styled.div`
@@ -30,14 +30,15 @@ const NavTitle = styled.div`
   cursor: pointer;
 `;
 
-const ProejctNameWrap = styled.div`
+const ProjectNameWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-right: 27px;
+  margin-right: 1.7%;
   width: 40%;
   height: 40px;
 `;
+
 const ProjectName = styled.div`
   color: #0d9991;
   font-weight: 700;
@@ -46,27 +47,18 @@ const ProjectName = styled.div`
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const Titles = ["Alpha", "Bravo", "Charlie", "Delta", "Echo"];
-
-  const pageTurningToFallback = (title: string) => {
-    navigate(`/${title.toLowerCase()}`);
-  };
-
-  const pageTurningToResult = () => {
-    navigate("/result");
-  };
+  const Titles = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Result"];
 
   return (
     <Container>
       <TitleWrap>
         {Titles.map((title, idx) => {
-          return <NavTitle onClick={() => pageTurningToFallback(title)}>{title}</NavTitle>;
+          return <NavTitle onClick={() => navigate(`/${title.toLowerCase()}`)}>{title}</NavTitle>;
         })}
-        <NavTitle onClick={pageTurningToResult}>Result</NavTitle>
       </TitleWrap>
-      <ProejctNameWrap>
-        <ProjectName>project_name</ProjectName>
-      </ProejctNameWrap>
+      <ProjectNameWrap>
+        <ProjectName>project name</ProjectName>
+      </ProjectNameWrap>
     </Container>
   );
 };
