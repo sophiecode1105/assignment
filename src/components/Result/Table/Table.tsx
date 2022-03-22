@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import TableHeader from "./TableHeader";
 import TableContents from "./TableContents";
+import { UserDataList } from "../../../model/user";
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +12,11 @@ const Container = styled.div`
   height: 50vh;
 `;
 
-const Table = ({ data }: { data: [][] }) => {
+interface TableProps {
+  data: UserDataList;
+}
+
+const Table = ({ data }: TableProps) => {
   return (
     <Container>
       <TableHeader />

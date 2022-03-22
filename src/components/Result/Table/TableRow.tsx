@@ -1,47 +1,35 @@
-const TableRow = ({ rowData }: { rowData: (string | number)[] }) => {
+import styled from "styled-components";
+import { UserData } from "../../../model/user";
+
+const Container = styled.div`
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+`;
+
+const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  font-size: 24px;
+  font-weight: 700;
+  min-height: 90px;
+`;
+interface TableRowProps {
+  rowData: UserData;
+}
+
+const TableRow = ({ rowData }: TableRowProps) => {
   let [name, foxTrot, golf] = rowData;
-  foxTrot = (foxTrot as number).toPrecision(5);
-  golf = (golf as number).toPrecision(5);
+  let foxPrecise = foxTrot.toPrecision(5);
+  let golfPrecise = golf.toPrecision(5);
 
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <div
-        style={{
-          fontSize: "24px",
-          minHeight: "200px",
-          border: "1px solid green",
-          display: "flex",
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        {name}
-      </div>
-      <div
-        style={{
-          fontSize: "24px",
-          minHeight: "200px",
-          border: "1px solid green",
-          display: "flex",
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        {foxTrot}
-      </div>
-      <div
-        style={{
-          fontSize: "24px",
-          minHeight: "200px",
-          border: "1px solid green",
-          display: "flex",
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        {golf}
-      </div>
-    </div>
+    <Container>
+      <Content>{name}</Content>
+      <Content>{foxPrecise}</Content>
+      <Content>{golfPrecise}</Content>
+    </Container>
   );
 };
 

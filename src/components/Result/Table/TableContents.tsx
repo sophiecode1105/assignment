@@ -1,11 +1,20 @@
+import styled from "styled-components";
+import { UserDataList } from "../../../model/user";
 import TableRow from "./TableRow";
-const TableContents = ({ userData }: { userData: [][] }) => {
+
+const Container = styled.div``;
+
+interface TableContentsProps {
+  userData: UserDataList;
+}
+
+const TableContents = ({ userData }: TableContentsProps) => {
   return (
-    <div>
+    <Container>
       {userData.map((user) => {
         return <TableRow rowData={user} />;
       })}
-    </div>
+    </Container>
   );
 };
 
