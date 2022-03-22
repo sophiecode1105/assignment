@@ -11,6 +11,7 @@ const Container = styled.div`
   bottom: 0%;
   background: #ffffff;
   filter: drop-shadow(0px 1px 4px rgba(21, 34, 50, 0.25));
+  z-index: 999;
 `;
 
 const Logo = styled.div`
