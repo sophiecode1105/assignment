@@ -3,15 +3,15 @@ import SortButton from "../SortButton";
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   height: 59px;
   border-bottom: 1px solid #000000;
-  padding: 0.5% 5%;
 `;
 
 const Column = styled.div`
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
 `;

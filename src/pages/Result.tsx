@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Search from "../components/Result/Search";
+import Table from "../components/Result/Table/Table";
+import { getAllResults, getResultByName, DUMMY_ALL, DUMMY_BY_NAME } from "../utils/api/testapi";
 
 const Container = styled.div`
   display: flex;
@@ -26,12 +29,33 @@ const Title = styled.h1`
 `;
 
 const Result = () => {
+  const [userData, setUserData] = useState<[][]>([]);
+
+  const sortByFoxTrot = () => {};
+
+  const sortByGolf = () => {};
+
+  useEffect(() => {
+    (async () => {
+      try {
+        let userData: [][] = await getAllResults();
+        console.log("data is", userData);
+        if (userData.length) {
+          setUserData(userData);
+          // localStorage.setItem("allusers");
+        }
+      } catch (e) {
+        setUserData([]);
+      }
+    })();
+  }, []);
   return (
     <Container>
       <Header>
         <Title>Result</Title>
         <Search />
       </Header>
+      <Table data={userData} />
     </Container>
   );
 };
