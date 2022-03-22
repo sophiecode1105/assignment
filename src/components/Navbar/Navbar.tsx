@@ -46,23 +46,14 @@ const ProjectName = styled.div`
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const Titles = ["Alpha", "Bravo", "Charlie", "Delta", "Echo"];
-
-  const pageTurningToFallback = (title: string) => {
-    navigate(`/${title.toLowerCase()}`);
-  };
-
-  const pageTurningToResult = () => {
-    navigate("/result");
-  };
+  const Titles = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Result"];
 
   return (
     <Container>
       <TitleWrap>
         {Titles.map((title, idx) => {
-          return <NavTitle onClick={() => pageTurningToFallback(title)}>{title}</NavTitle>;
+          return <NavTitle onClick={() => navigate(`/${title.toLowerCase()}`)}>{title}</NavTitle>;
         })}
-        <NavTitle onClick={pageTurningToResult}>Result</NavTitle>
       </TitleWrap>
       <ProejctNameWrap>
         <ProjectName>project_name</ProjectName>
