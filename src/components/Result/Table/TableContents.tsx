@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import { UserDataList } from "../../../model/user";
+import { UserDataList, UserData } from "../../../model/user";
 import TableRow from "./TableRow";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../state/store/store";
 
 const Container = styled.div``;
 
-interface TableContentsProps {
-  userData: UserDataList;
-}
+const TableContents = () => {
+  const userData: UserDataList = useSelector((state: RootState) => state.userData.value);
 
-const TableContents = ({ userData }: TableContentsProps) => {
   return (
     <Container>
-      {userData.map((user) => {
-        return <TableRow rowData={user} />;
+      {userData.map((user: UserData, i) => {
+        return <TableRow key={`tbr-${i}`} rowData={user.data} />;
       })}
     </Container>
   );

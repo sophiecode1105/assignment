@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import TableHeader from "./TableHeader";
 import TableContents from "./TableContents";
-import { UserDataList } from "../../../model/user";
+import { FOX, GOLF } from "../../../model/constants";
 
 const Container = styled.div`
   display: flex;
@@ -12,15 +12,16 @@ const Container = styled.div`
   height: 50vh;
 `;
 
-interface TableProps {
-  data: UserDataList;
-}
-
-const Table = ({ data }: TableProps) => {
+const Table = () => {
+  let columnConfigs = [
+    { name: "Name", sortKey: 0 },
+    { name: "Foxtrot", sortKey: FOX },
+    { name: "Golf", sortKey: GOLF },
+  ];
   return (
     <Container>
-      <TableHeader />
-      <TableContents userData={data} />
+      <TableHeader columConfigs={columnConfigs} />
+      <TableContents />
     </Container>
   );
 };
