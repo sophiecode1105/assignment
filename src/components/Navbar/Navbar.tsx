@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   /* border: 1px solid black; */
@@ -21,12 +22,15 @@ const TitleWrap = styled.div`
   height: 40px;
 `;
 
-const NavTitle = styled.div`
+interface WeightProps {
+  weight: string;
+}
+const NavTitle = styled.div<WeightProps>`
   width: 12.25%;
   text-align: center;
   font-size: 20px;
   font-family: Lato;
-  font-weight: 500;
+  font-weight: ${(props) => props.weight};
   cursor: pointer;
 `;
 
@@ -48,12 +52,27 @@ const ProjectName = styled.div`
 const Navbar = () => {
   const navigate = useNavigate();
   const Titles = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Result"];
+  const [focusedTitle, setFocusedTitle] = useState<string>("");
+
+  const navigatePageWithClickEffect = (title: string) => {
+    navigate(`/${title.toLowerCase()}`);
+    setFocusedTitle(title);
+  };
 
   return (
     <Container>
       <TitleWrap>
         {Titles.map((title, idx) => {
-          return <NavTitle onClick={() => navigate(`/${title.toLowerCase()}`)}>{title}</NavTitle>;
+          return (
+            <NavTitle
+              weight={title === focusedTitle ? "bold" : "normal"}
+              onClick={(e) => {
+                navigatePageWithClickEffect(title);
+              }}
+            >
+              {title}
+            </NavTitle>
+          );
         })}
       </TitleWrap>
       <ProjectNameWrap>

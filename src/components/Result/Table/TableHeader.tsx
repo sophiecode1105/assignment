@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import SortButton from "../SortButton";
+import { FOX, GOLF, SortKey } from "../../../model/constants";
+import TableSortButton from "./TableSortButton";
 
 const Container = styled.div`
   display: flex;
@@ -21,20 +22,19 @@ const ColumnName = styled.h2`
   font-size: 24px;
 `;
 
-const TableHeader = () => {
+interface TableHeaderProps {
+  columConfigs: { name: string; sortKey: SortKey }[];
+}
+
+const TableHeader = ({ columConfigs }: TableHeaderProps) => {
   return (
     <Container>
-      <Column>
-        <ColumnName>Name</ColumnName>
-      </Column>
-      <Column>
-        <ColumnName>Foxtrot</ColumnName>
-        <SortButton />
-      </Column>
-      <Column>
-        <ColumnName>Golf</ColumnName>
-        <SortButton />
-      </Column>
+      {columConfigs.map((cc) => (
+        <Column>
+          <ColumnName>{cc.name}</ColumnName>
+          {cc.sortKey ? <TableSortButton sortKey={cc.sortKey} /> : null}
+        </Column>
+      ))}
     </Container>
   );
 };

@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Search from "../components/Result/Search";
 import Table from "../components/Result/Table/Table";
-import { getAllResults, getResultByName, DUMMY_ALL, DUMMY_BY_NAME } from "../utils/api/testapi";
+import { UserData, UserDataList } from "../model/user";
+import { useAppDispatch } from "../state/store/hook";
+import { updateUserDataList } from "../state/store/userData";
+import { getAllResults, getResultByName } from "../utils/api/testapi";
 
 const Container = styled.div`
   display: flex;
@@ -29,33 +32,34 @@ const Title = styled.h1`
 `;
 
 const Result = () => {
-  const [userData, setUserData] = useState<[][]>([]);
-
-  const sortByFoxTrot = () => {};
-
-  const sortByGolf = () => {};
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     (async () => {
       try {
-        let userData: [][] = await getAllResults();
-        console.log("data is", userData);
-        if (userData.length) {
-          setUserData(userData);
-          // localStorage.setItem("allusers");
+        let apiData: [string, number, number][] = await getAllResults();
+        let userDataList = apiData.map((el) => {
+          return {
+            data: el,
+            subDataList: [],
+          } as UserData;
+        }) as UserDataList;
+        if (userDataList.length) {
+          dispatch(updateUserDataList(userDataList));
         }
       } catch (e) {
-        setUserData([]);
+        dispatch(updateUserDataList([]));
       }
     })();
   }, []);
+
   return (
     <Container>
       <Header>
         <Title>Result</Title>
         <Search />
       </Header>
-      <Table data={userData} />
+      <Table />
     </Container>
   );
 };
