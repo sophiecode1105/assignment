@@ -1,8 +1,10 @@
+import { SlowBuffer } from "buffer";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Search from "../components/Result/Search";
 import Table from "../components/Result/Table/Table";
-import { getAllResults, getResultByName, DUMMY_ALL, DUMMY_BY_NAME } from "../utils/api/testapi";
+import { UserDataList } from "../model/user";
+import { getAllResults, getResultByName } from "../utils/api/testapi";
 
 const Container = styled.div`
   display: flex;
@@ -29,16 +31,27 @@ const Title = styled.h1`
 `;
 
 const Result = () => {
-  const [userData, setUserData] = useState<[][]>([]);
+  const [userData, setUserData] = useState<UserDataList>([]);
 
-  const sortByFoxTrot = () => {};
-
-  const sortByGolf = () => {};
+  // const sortUserData = (sortKey: string) => {
+  //   switch (sortKey) {
+  //     case "FOX_UP":
+  //       return [];
+  //     case "FOX_DOWN":
+  //       return [];
+  //     case "GOLF_UP":
+  //       return [];
+  //     case "GOLF_DOWN":
+  //       return [];
+  //     default:
+  //       userData;
+  //   }
+  // };
 
   useEffect(() => {
     (async () => {
       try {
-        let userData: [][] = await getAllResults();
+        let userData: UserDataList = await getAllResults();
         console.log("data is", userData);
         if (userData.length) {
           setUserData(userData);
