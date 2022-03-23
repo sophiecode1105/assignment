@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FOX, GOLF, SortKey } from "../../../model/constants";
-import SortButton from "../SortButton";
+import TableSortButton from "./TableSortButton";
 
 const Container = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const TableHeader = ({ columConfigs }: TableHeaderProps) => {
       {columConfigs.map((cc) => (
         <Column>
           <ColumnName>{cc.name}</ColumnName>
-          {cc.sortKey ? <SortButton sortKey={cc.sortKey} /> : null}
+          {cc.sortKey ? <TableSortButton sortKey={cc.sortKey} /> : null}
         </Column>
       ))}
     </Container>

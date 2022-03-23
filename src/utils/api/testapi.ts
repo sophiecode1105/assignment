@@ -8,6 +8,7 @@ export const getAllResults = async () => {
     let resultDataURL = `${BASE_URL}/result`;
     resp = await axios.get(resultDataURL);
   } catch (e) {
+    console.log("EEROR IN API");
     throw e;
   }
   return resp.data;

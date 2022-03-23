@@ -1,3 +1,11 @@
 export type UserDataList = Array<UserData>;
 
-export type UserData = [string, number, number];
+export interface UserData {
+  data: [string, number, number];
+  subDataList: UserSubDataList;
+}
+export type UserSubDataList = UserSubData[];
+export interface UserSubData {
+  clicked: boolean;
+  data: number[];
+}
