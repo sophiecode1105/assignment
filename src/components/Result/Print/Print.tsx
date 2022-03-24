@@ -58,8 +58,8 @@ const Print = () => {
         return (
           <ItemContainer key={`p-${i}`}>
             {el.clicked.map((il, j) => (
-              <Item>
-                <ItemKey key={`p-i-${i}-${j}`}>{`${el.name}-${il}`}</ItemKey>
+              <Item key={`p-i-${i}-${j}`}>
+                <ItemKey>{`${el.name}-${il}`}</ItemKey>
                 <IconWrap
                   onClick={() => {
                     dispatch(changeSubItemCheck({ userId: el.userId, id: il }));
