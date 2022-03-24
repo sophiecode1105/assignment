@@ -1,17 +1,13 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { FOX, GOLF } from "../../../model/constants";
 import { UserSubData, UserSubDataList } from "../../../model/user";
 import { useAppDispatch } from "../../../state/store/hook";
 import { getResultByName } from "../../../utils/api/testapi";
-import TableHeader from "./TableHeader";
-import { updateUserSubDataList } from "../../../state/store/userData";
-import SubTableContent from "./SubTable/SubTableContent";
+import { updateUserSubDataList, changeClicked } from "../../../state/store/userData";
 import SubTable from "./SubTable/SubTable";
 
 const Container = styled.div`
   display: flex;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -21,6 +17,7 @@ const ContentWrap = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 `;
 
 const Content = styled.div`
@@ -42,13 +39,12 @@ const SubTableWrap = styled.div`
 interface TableRowProps {
   rowData: [string, number, number];
   userId: string;
+  called: boolean;
+  clicked: boolean;
 }
 
-const TableRow = ({ rowData, userId }: TableRowProps) => {
+const TableRow = ({ rowData, userId, called, clicked }: TableRowProps) => {
   const dispatch = useAppDispatch();
-
-  const [clicked, setClicked] = useState(false);
-  const [called, setCalled] = useState(false);
   const [name, foxTrot, golf] = rowData;
 
   let foxPrecise = foxTrot.toPrecision(5);
@@ -65,12 +61,11 @@ const TableRow = ({ rowData, userId }: TableRowProps) => {
           } as UserSubData;
         }) as UserSubDataList;
         dispatch(updateUserSubDataList({ userId, sublist: userSubDataList }));
-        setCalled(!called);
       }
     } catch (e) {
       throw e;
     }
-    setClicked(!clicked);
+    dispatch(changeClicked(userId));
   };
 
   return (

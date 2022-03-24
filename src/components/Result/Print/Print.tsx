@@ -48,7 +48,7 @@ const Print = () => {
       return {
         userId: userData.id,
         name: userData.data[0],
-        clicked: userData.clicked,
+        clicked: userData.subDataClicked,
       };
     })
   );
