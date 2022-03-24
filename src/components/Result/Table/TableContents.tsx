@@ -12,7 +12,7 @@ const TableContents = () => {
   return (
     <Container>
       {userData.map((user: UserData, i: number) => {
-        return <TableRow key={`tbr-${i}`} rowData={user.data} />;
+        return <TableRow key={`tbr-${i}`} rowData={user.data} userId={user.id} />;
       })}
     </Container>
   );

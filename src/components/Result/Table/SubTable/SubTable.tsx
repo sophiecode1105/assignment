@@ -42,10 +42,10 @@ const ClearButton = styled(Button)`
 `;
 
 interface SubTableProps {
-  userName: string;
+  userId: string;
 }
 
-const SubTable = ({ userName }: SubTableProps) => {
+const SubTable = ({ userId }: SubTableProps) => {
   let columnDetails = [
     { name: "id", sortKey: 0 },
     { name: "Foxtrot", sortKey: FOX },
@@ -58,8 +58,8 @@ const SubTable = ({ userName }: SubTableProps) => {
         <CheckAllButton>check all</CheckAllButton>
         <ClearButton>clear</ClearButton>
       </ButtonWrap>
-      <SubTableHeader userName={userName} columDetails={columnDetails} />
-      <SubTableContent userName={userName} />
+      <SubTableHeader userId={userId} columDetails={columnDetails} />
+      <SubTableContent userId={userId} />
     </Container>
   );
 };

@@ -41,9 +41,10 @@ const SubTableWrap = styled.div`
 `;
 interface TableRowProps {
   rowData: [string, number, number];
+  userId: string;
 }
 
-const TableRow = ({ rowData }: TableRowProps) => {
+const TableRow = ({ rowData, userId }: TableRowProps) => {
   const dispatch = useAppDispatch();
 
   const [clicked, setClicked] = useState(false);
@@ -63,7 +64,7 @@ const TableRow = ({ rowData }: TableRowProps) => {
             data: el,
           } as UserSubData;
         }) as UserSubDataList;
-        dispatch(updateUserSubDataList({ userName: name, sublist: userSubDataList }));
+        dispatch(updateUserSubDataList({ userId, sublist: userSubDataList }));
         setCalled(!called);
       }
     } catch (e) {
@@ -81,7 +82,7 @@ const TableRow = ({ rowData }: TableRowProps) => {
       </ContentWrap>
       {clicked ? (
         <SubTableWrap>
-          <SubTable userName={name} />
+          <SubTable userId={userId} />
         </SubTableWrap>
       ) : null}
     </Container>

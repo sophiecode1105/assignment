@@ -17,11 +17,11 @@ const Button = styled.div`
 const ButtonImg = styled.img``;
 
 interface SortButtonProps {
-  userName: string;
+  userId: string;
   sortKey: SortKey;
 }
 
-const SubTableSortButton = ({ userName, sortKey }: SortButtonProps) => {
+const SubTableSortButton = ({ userId, sortKey }: SortButtonProps) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -29,7 +29,7 @@ const SubTableSortButton = ({ userName, sortKey }: SortButtonProps) => {
       <Button>
         <ButtonImg
           onClick={() => {
-            dispatch(sortUserSubDataList({ userName, sort: sortKey, direc: ASC }));
+            dispatch(sortUserSubDataList({ userId, sort: sortKey, direc: ASC }));
           }}
           draggable={false}
           src={up}
@@ -38,7 +38,7 @@ const SubTableSortButton = ({ userName, sortKey }: SortButtonProps) => {
       <Button>
         <ButtonImg
           onClick={() => {
-            dispatch(sortUserSubDataList({ userName, sort: sortKey, direc: DESC }));
+            dispatch(sortUserSubDataList({ userId, sort: sortKey, direc: DESC }));
           }}
           draggable={false}
           src={down}

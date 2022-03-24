@@ -11,17 +11,17 @@ const Container = styled.div`
 `;
 
 interface SubTableContentProps {
-  userName: string;
+  userId: string;
 }
 
-const SubTableContent = ({ userName }: SubTableContentProps) => {
+const SubTableContent = ({ userId }: SubTableContentProps) => {
   const subList: UserSubDataList = useSelector(
-    (state: RootState) => state.userData.value.filter((userData) => userData.data[0] === userName)[0].subDataList
+    (state: RootState) => state.userData.value.filter((userData) => userData.id === userId)[0].subDataList
   );
   return (
     <Container>
-      {subList.map((subData) => (
-        <SubTableRow userName={userName} rowData={subData.data} clicked={subData.clicked} />
+      {subList.map((subData, i) => (
+        <SubTableRow key={`str-${i}`} userId={userId} rowData={subData.data} clicked={subData.clicked} />
       ))}
     </Container>
   );

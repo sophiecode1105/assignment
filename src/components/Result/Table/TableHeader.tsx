@@ -29,8 +29,8 @@ interface TableHeaderProps {
 const TableHeader = ({ columnDetails }: TableHeaderProps) => {
   return (
     <Container>
-      {columnDetails.map((c) => (
-        <Column>
+      {columnDetails.map((c, i) => (
+        <Column key={`th-${i}`}>
           <ColumnName>{c.name}</ColumnName>
           {c.sortKey ? <TableSortButton sortKey={c.sortKey} /> : null}
         </Column>

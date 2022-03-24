@@ -27,12 +27,12 @@ const Content = styled.div`
 `;
 
 interface SubTableRowProps {
-  userName: string;
+  userId: string;
   clicked: boolean;
   rowData: number[];
 }
 
-const SubTableRow = ({ userName, clicked, rowData }: SubTableRowProps) => {
+const SubTableRow = ({ userId, clicked, rowData }: SubTableRowProps) => {
   const dispatch = useAppDispatch();
 
   let id = rowData[0];
@@ -43,7 +43,7 @@ const SubTableRow = ({ userName, clicked, rowData }: SubTableRowProps) => {
     <Container
       clicked={clicked}
       onClick={() => {
-        dispatch(changeSubItemCheck({ userName: userName, id: id }));
+        dispatch(changeSubItemCheck({ userId, id: id }));
       }}
     >
       <Content>{id}</Content>

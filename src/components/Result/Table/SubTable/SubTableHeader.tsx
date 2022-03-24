@@ -23,17 +23,17 @@ const ColumnName = styled.h2`
 `;
 
 interface SubTableHeaderProps {
-  userName: string;
+  userId: string;
   columDetails: { name: string; sortKey: SortKey }[];
 }
 
-const SubTableHeader = ({ userName, columDetails }: SubTableHeaderProps) => {
+const SubTableHeader = ({ userId, columDetails }: SubTableHeaderProps) => {
   return (
     <Container>
-      {columDetails.map((c) => (
-        <Column>
+      {columDetails.map((c, i) => (
+        <Column key={`stc-${i}`}>
           <ColumnName>{c.name}</ColumnName>
-          {c.sortKey ? <SubTableSortButton userName={userName} sortKey={c.sortKey} /> : null}
+          {c.sortKey ? <SubTableSortButton userId={userId} sortKey={c.sortKey} /> : null}
         </Column>
       ))}
     </Container>
