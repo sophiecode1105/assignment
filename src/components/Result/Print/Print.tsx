@@ -1,11 +1,19 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { UserDataList } from "../../../model/user";
 import { RootState } from "../../../state/store/store";
 
 const Container = styled.div`
   width: 100%;
-  border: 1px solid red;
+`;
+
+const PrintNameWithIdWrap = styled.div`
+  background-color: #9ed6d3;
+`;
+const PrintNameWithId = styled.div`
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 1%;
+  padding: 1%;
 `;
 
 const Print = () => {
@@ -21,11 +29,11 @@ const Print = () => {
     <Container>
       {checkedDataByName.map((el, i) => {
         return (
-          <div key={`p-${i}`}>
+          <PrintNameWithIdWrap key={`p-${i}`}>
             {el.clicked.map((il, j) => (
-              <div key={`p-i-${i}-${j}`}>{`${el.name}-${il}`}</div>
+              <PrintNameWithId key={`p-i-${i}-${j}`}>{`${el.name}-${il}`}</PrintNameWithId>
             ))}
-          </div>
+          </PrintNameWithIdWrap>
         );
       })}
     </Container>
