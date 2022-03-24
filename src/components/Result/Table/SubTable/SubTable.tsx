@@ -10,6 +10,37 @@ const Container = styled.div`
   margin-top: 48px;
 `;
 
+const ButtonWrap = styled.div`
+  display: flex;
+  width: 20%;
+`;
+
+const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 55px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  min-width: 150px;
+  margin: 6%;
+
+  background-color: #ffffff;
+  cursor: pointer;
+`;
+
+const CheckAllButton = styled(Button)`
+  border: 1px solid #7879f1;
+  color: #7879f1;
+`;
+
+const ClearButton = styled(Button)`
+  border: 1px solid #ff0000;
+  color: #ff0000;
+`;
+
 interface SubTableProps {
   userName: string;
 }
@@ -23,6 +54,10 @@ const SubTable = ({ userName }: SubTableProps) => {
 
   return (
     <Container>
+      <ButtonWrap>
+        <CheckAllButton>check all</CheckAllButton>
+        <ClearButton>clear</ClearButton>
+      </ButtonWrap>
       <SubTableHeader userName={userName} columDetails={columnDetails} />
       <SubTableContent userName={userName} />
     </Container>

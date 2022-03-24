@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserData, UserDataList, UserSubDataList } from "../../model/user";
 import { Direction, SortKey, FOX, GOLF, DEFAULT } from "../../model/constants";
 import { sortListByIdx } from "../../utils/sort/sortList";
+import { stat } from "fs";
 
 interface UserDataState {
   value: UserDataList;
@@ -33,9 +34,6 @@ export const UserDataSlice = createSlice({
       state.value = action.payload;
     },
     sortUserSubDataList: (state, action: PayloadAction<{ userName: string; sort: SortKey; direc: Direction }>) => {
-      console.log("REDUCER --> ", action.payload.userName);
-      console.log("REDUCER --> ", action.payload.sort);
-      console.log("REDUCER --> ", action.payload.direc);
       let sort = action.payload.sort;
       let direction = action.payload.direc;
       if (sort !== FOX && sort !== GOLF) {
@@ -49,7 +47,6 @@ export const UserDataSlice = createSlice({
         }
       }
     },
-    //userdatalist => arry => for돌리고 => data[0] === name // 해당 데이터의 서브데이터 sort
     updateUserSubDataList: (state, action: PayloadAction<{ userName: string; sublist: UserSubDataList }>) => {
       let newState = state.value.map((userData) => {
         if (userData.data[0] === action.payload.userName) {
@@ -59,9 +56,22 @@ export const UserDataSlice = createSlice({
       });
       state.value = newState;
     },
+    changeSubItemCheck: (state, action: PayloadAction<{ userName: string; id: number }>) => {
+      for (let i = 0; i < state.value.length; i++) {
+        if (state.value[i].data[0] === action.payload.userName) {
+          let targetUserData = state.value[i];
+          for (let j = 0; j < targetUserData.subDataList.length; j++) {
+            if (targetUserData.subDataList[j]?.data[0] === action.payload.id) {
+              let targetSubData = targetUserData.subDataList[j];
+              state.value[i].subDataList[j].clicked = !targetSubData.clicked;
+            }
+          }
+        }
+      }
+    },
   },
 });
 
-export const { updateUserDataList, sortUserDataList, sortUserSubDataList, updateUserSubDataList } =
+export const { updateUserDataList, sortUserDataList, sortUserSubDataList, updateUserSubDataList, changeSubItemCheck } =
   UserDataSlice.actions;
 export default UserDataSlice.reducer;

@@ -21,7 +21,7 @@ const SubTableContent = ({ userName }: SubTableContentProps) => {
   return (
     <Container>
       {subList.map((subData) => (
-        <SubTableRow rowData={subData.data} />
+        <SubTableRow userName={userName} rowData={subData.data} clicked={subData.clicked} />
       ))}
     </Container>
   );
