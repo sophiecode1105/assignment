@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 
 const Container = styled.div`
   position: relative;
-  /* width: 100vw; */
 `;
 
 const App = () => {

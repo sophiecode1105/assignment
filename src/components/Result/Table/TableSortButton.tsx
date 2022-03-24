@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import up from "../../../assets/Polygon_Up.png";
 import down from "../../../assets/Polygon_Down.png";
-import { FOX, GOLF, ASC, DESC, SortKey } from "../../../model/constants";
+import { ASC, DESC, SortKey } from "../../../model/constants";
 import { useAppDispatch } from "../../../state/store/hook";
 import { sortUserDataList } from "../../../state/store/userData";
 

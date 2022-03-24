@@ -3,7 +3,7 @@ import up from "../../../../assets/Polygon_Up.png";
 import down from "../../../../assets/Polygon_Down.png";
 import { useAppDispatch } from "../../../../state/store/hook";
 import { ASC, DESC, SortKey } from "../../../../model/constants";
-import { sortUserDataList, sortUserSubDataList } from "../../../../state/store/userData";
+import { sortUserSubDataList } from "../../../../state/store/userData";
 
 const Container = styled.div`
   margin-left: 10px;
