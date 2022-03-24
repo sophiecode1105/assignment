@@ -4,6 +4,8 @@ import { useAppDispatch } from "../../../state/store/hook";
 import { getResultByName } from "../../../utils/api/testapi";
 import { updateUserSubDataList, changeClicked } from "../../../state/store/userData";
 import SubTable from "./SubTable/SubTable";
+import { useState } from "react";
+import LoadingIndicator from "../../../assets/Loading_Indicator.gif";
 
 const Container = styled.div`
   display: flex;
@@ -11,13 +13,20 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
-const ContentWrap = styled.div`
+type clickedProp = {
+  clicked: boolean;
+  hasClickedSubData: boolean;
+};
+
+const ContentWrap = styled.div<clickedProp>`
   width: 100%;
   display: flex;
   justify-content: space-around;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: ${(props) => (props.clicked || props.hasClickedSubData ? "rgba(200,200,200,0.3)" : "null")};
 `;
 
 const Content = styled.div`
@@ -36,21 +45,29 @@ const SubTableWrap = styled.div`
   justify-content: space-around;
   flex-direction: column;
 `;
+
+const LoadingScreen = styled.img``;
 interface TableRowProps {
   rowData: [string, number, number];
   userId: string;
   called: boolean;
   clicked: boolean;
+  hasClickedSubData: boolean;
 }
+const LoadingScreenWrap = styled.div`
+  margin-top: 2%;
+`;
 
-const TableRow = ({ rowData, userId, called, clicked }: TableRowProps) => {
+const TableRow = ({ rowData, userId, called, clicked, hasClickedSubData }: TableRowProps) => {
   const dispatch = useAppDispatch();
+  const [loaded, setLoaded] = useState<boolean>(false);
   const [name, foxTrot, golf] = rowData;
 
   let foxPrecise = foxTrot.toPrecision(5);
   let golfPrecise = golf.toPrecision(5);
 
   const getSubData = async () => {
+    dispatch(changeClicked(userId));
     try {
       if (!called) {
         let subApiData: number[][] = await getResultByName(name);
@@ -61,24 +78,28 @@ const TableRow = ({ rowData, userId, called, clicked }: TableRowProps) => {
           } as UserSubData;
         }) as UserSubDataList;
         dispatch(updateUserSubDataList({ userId, sublist: userSubDataList }));
+        setLoaded(true);
       }
     } catch (e) {
       throw e;
     }
-    dispatch(changeClicked(userId));
   };
 
   return (
     <Container>
-      <ContentWrap onClick={getSubData}>
+      <ContentWrap clicked={clicked} hasClickedSubData={hasClickedSubData} onClick={getSubData}>
         <Content>{name}</Content>
         <Content>{foxPrecise}</Content>
         <Content>{golfPrecise}</Content>
       </ContentWrap>
-      {clicked ? (
+      {clicked && loaded ? (
         <SubTableWrap>
           <SubTable userId={userId} />
         </SubTableWrap>
+      ) : clicked && !loaded ? (
+        <LoadingScreenWrap>
+          <LoadingScreen src={LoadingIndicator} />
+        </LoadingScreenWrap>
       ) : null}
     </Container>
   );

@@ -18,6 +18,7 @@ const SearchWrap = styled.div`
 const SearchBar = styled.input`
   height: 55px;
   flex: 0.72;
+  font-size: 1.5em;
   border: 1px solid #7879f1;
   box-sizing: border-box;
   &:focus {

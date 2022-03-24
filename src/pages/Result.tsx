@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Print from "../components/Result/Print/Print";
 import Search from "../components/Result/Search/Search";
 import Table from "../components/Result/Table/Table";
 import { UserData, UserDataList } from "../model/user";
@@ -8,12 +7,15 @@ import { useAppDispatch } from "../state/store/hook";
 import { updateUserDataList } from "../state/store/userData";
 import { getAllResults } from "../utils/api/testapi";
 import { v4 as uuidv4 } from "uuid";
+import Loading from "../components/Loading/Loading";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 85%;
   margin: 79px auto 0 auto;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Header = styled.div`
@@ -34,8 +36,18 @@ const Title = styled.h1`
   text-align: left;
 `;
 
+const LoadingWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 30%;
+  margin-top: 20%;
+`;
+
 const Result = () => {
   const dispatch = useAppDispatch();
+  const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
@@ -52,6 +64,7 @@ const Result = () => {
         }) as UserDataList;
         if (userDataList.length) {
           dispatch(updateUserDataList(userDataList));
+          setLoaded(true);
         }
       } catch (e) {
         dispatch(updateUserDataList([]));
@@ -65,7 +78,13 @@ const Result = () => {
         <Title>Result</Title>
         <Search />
       </Header>
-      <Table />
+      {loaded ? (
+        <Table />
+      ) : (
+        <LoadingWrap>
+          <Loading />
+        </LoadingWrap>
+      )}
     </Container>
   );
 };

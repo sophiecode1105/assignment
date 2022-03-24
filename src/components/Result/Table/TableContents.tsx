@@ -21,6 +21,7 @@ const TableContents = () => {
               userId={user.id}
               called={user.subDataList.length > 0}
               clicked={user.clicked}
+              hasClickedSubData={user.subDataClicked.length > 0}
             />
           );
         }
