@@ -45,7 +45,6 @@ const Result = () => {
           } as UserData;
         }) as UserDataList;
         if (userDataList.length) {
-          console.log(userDataList);
           dispatch(updateUserDataList(userDataList));
         }
       } catch (e) {
