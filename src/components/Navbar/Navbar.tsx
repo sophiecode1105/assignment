@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   /* border: 1px solid black; */
@@ -22,15 +21,17 @@ const TitleWrap = styled.div`
   height: 40px;
 `;
 
-interface WeightProps {
-  weight: string;
-}
-const NavTitle = styled.div<WeightProps>`
+type isActiveProp = {
+  isActive: boolean;
+};
+
+const NavTitle = styled.div<isActiveProp>`
   width: 12.25%;
   text-align: center;
   font-size: 20px;
   font-family: Lato;
-  font-weight: ${(props) => props.weight};
+  font-weight: ${(props) => (props.isActive ? "700" : "400")};
+  text-shadow: ${(props) => (props.isActive ? "1px 4px 4px rgba(0, 0, 0, 0.25)" : "none")};
   cursor: pointer;
 `;
 
@@ -51,13 +52,9 @@ const ProjectName = styled.div`
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const Titles = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Result"];
-  const [focusedTitle, setFocusedTitle] = useState<string>("");
-
-  const navigatePageWithClickEffect = (title: string) => {
-    navigate(`/${title.toLowerCase()}`);
-    setFocusedTitle(title);
-  };
+  // const [focusedTitle, setFocusedTitle] = useState<string>("");
 
   return (
     <Container>
@@ -66,9 +63,9 @@ const Navbar = () => {
           return (
             <NavTitle
               key={`navT-${idx}`}
-              weight={title === focusedTitle ? "bold" : "normal"}
-              onClick={(e) => {
-                navigatePageWithClickEffect(title);
+              isActive={pathname === `/${title.toLowerCase()}`}
+              onClick={() => {
+                navigate(`/${title.toLowerCase()}`);
               }}
             >
               {title}
