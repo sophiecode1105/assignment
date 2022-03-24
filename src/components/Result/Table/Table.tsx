@@ -13,14 +13,14 @@ const Container = styled.div`
 `;
 
 const Table = () => {
-  let columnConfigs = [
+  let columnDetails = [
     { name: "Name", sortKey: 0 },
     { name: "Foxtrot", sortKey: FOX },
     { name: "Golf", sortKey: GOLF },
   ];
   return (
     <Container>
-      <TableHeader columConfigs={columnConfigs} />
+      <TableHeader columnDetails={columnDetails} />
       <TableContents />
     </Container>
   );

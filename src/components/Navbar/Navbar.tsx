@@ -65,6 +65,7 @@ const Navbar = () => {
         {Titles.map((title, idx) => {
           return (
             <NavTitle
+              key={`navT-${idx}`}
               weight={title === focusedTitle ? "bold" : "normal"}
               onClick={(e) => {
                 navigatePageWithClickEffect(title);

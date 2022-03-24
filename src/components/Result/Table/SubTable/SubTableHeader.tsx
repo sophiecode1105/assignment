@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { FOX, GOLF, SortKey } from "../../../model/constants";
-import TableSortButton from "./TableSortButton";
+import { SortKey } from "../../../../model/constants";
+import SubTableSortButton from "./SubTableSortButton";
 
 const Container = styled.div`
   display: flex;
@@ -22,20 +22,21 @@ const ColumnName = styled.h2`
   font-size: 24px;
 `;
 
-interface TableHeaderProps {
-  columnDetails: { name: string; sortKey: SortKey }[];
+interface SubTableHeaderProps {
+  userId: string;
+  columDetails: { name: string; sortKey: SortKey }[];
 }
 
-const TableHeader = ({ columnDetails }: TableHeaderProps) => {
+const SubTableHeader = ({ userId, columDetails }: SubTableHeaderProps) => {
   return (
     <Container>
-      {columnDetails.map((c, i) => (
-        <Column key={`th-${i}`}>
+      {columDetails.map((c, i) => (
+        <Column key={`stc-${i}`}>
           <ColumnName>{c.name}</ColumnName>
-          {c.sortKey ? <TableSortButton sortKey={c.sortKey} /> : null}
+          {c.sortKey ? <SubTableSortButton userId={userId} sortKey={c.sortKey} /> : null}
         </Column>
       ))}
     </Container>
   );
 };
-export default TableHeader;
+export default SubTableHeader;
