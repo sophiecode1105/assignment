@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FOX, GOLF, SortKey } from "../../../model/constants";
+import { SortKey } from "../../../model/constants";
 import TableSortButton from "./TableSortButton";
 
 const Container = styled.div`

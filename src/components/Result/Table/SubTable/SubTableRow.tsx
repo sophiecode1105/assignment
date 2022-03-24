@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { UserDataList } from "../../../../model/user";
 import { useAppDispatch } from "../../../../state/store/hook";
 import { changeSubItemCheck } from "../../../../state/store/userData";
-import { RootState } from "../../../../state/store/store";
 
 type ClickedProp = {
   clicked: boolean;

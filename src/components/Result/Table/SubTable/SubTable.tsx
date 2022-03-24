@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { FOX, GOLF } from "../../../../model/constants";
 import SubTableCheckAllAndClear from "./SubTableCheckAllAndClear";
-import SubTableCheckAndDelete from "./SubTableCheckAllAndClear";
 import SubTableContent from "./SubTableContent";
 import SubTableHeader from "./SubTableHeader";
 
