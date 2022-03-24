@@ -4,7 +4,8 @@ export interface UserData {
   id: string;
   data: [string, number, number];
   subDataList: UserSubDataList;
-  clicked: number[];
+  subDataClicked: number[];
+  clicked: boolean;
 }
 export type UserSubDataList = UserSubData[];
 export interface UserSubData {

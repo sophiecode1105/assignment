@@ -2,12 +2,13 @@ import styled from "styled-components";
 import TableHeader from "./TableHeader";
 import TableContents from "./TableContents";
 import { FOX, GOLF } from "../../../model/constants";
+import Print from "../Print/Print";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 48px;
+  margin-top: 1%;
   overflow-y: scroll;
   height: 50vh;
 `;
@@ -20,6 +21,7 @@ const Table = () => {
   ];
   return (
     <Container>
+      <Print />
       <TableHeader columnDetails={columnDetails} />
       <TableContents />
     </Container>

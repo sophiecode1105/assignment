@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useAppDispatch } from "../../../state/store/hook";
+import { updateSearchText } from "../../../state/store/searchData";
 
 const Container = styled.div`
   display: flex;
@@ -45,10 +48,21 @@ const DownloadButton = styled(Button)`
 `;
 
 const Search = () => {
+  const dispatch = useAppDispatch();
+  const [textSearch, setTextSearch] = useState<string>("");
+
+  const changeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTextSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    dispatch(updateSearchText({ searchText: textSearch }));
+  }, [textSearch]);
+
   return (
     <Container>
       <SearchWrap>
-        <SearchBar />
+        <SearchBar type="text" onChange={changeContent} />
         <SearchButton>search</SearchButton>
       </SearchWrap>
       <DownloadButton>download</DownloadButton>

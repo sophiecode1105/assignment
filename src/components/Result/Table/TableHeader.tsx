@@ -8,6 +8,7 @@ const Container = styled.div`
   width: 100%;
   height: 59px;
   border-bottom: 1px solid #000000;
+  margin-top: 48px;
 `;
 
 const Column = styled.div`

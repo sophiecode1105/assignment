@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import Print from "../components/Result/Print/Print";
-import Search from "../components/Result/Search";
+import Search from "../components/Result/Search/Search";
 import Table from "../components/Result/Table/Table";
 import { UserData, UserDataList } from "../model/user";
 import { useAppDispatch } from "../state/store/hook";
@@ -17,6 +17,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
+  position: sticky;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -45,7 +46,8 @@ const Result = () => {
             id: uuidv4(),
             data: el,
             subDataList: [],
-            clicked: [],
+            subDataClicked: [],
+            clicked: false,
           } as UserData;
         }) as UserDataList;
         if (userDataList.length) {
@@ -63,7 +65,6 @@ const Result = () => {
         <Title>Result</Title>
         <Search />
       </Header>
-      <Print />
       <Table />
     </Container>
   );

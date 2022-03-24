@@ -8,11 +8,22 @@ const Container = styled.div``;
 
 const TableContents = () => {
   const userData: UserDataList = useSelector((state: RootState) => state.userData.value);
+  const searchText: string = useSelector((state: RootState) => state.searchData.value);
 
   return (
     <Container>
       {userData.map((user: UserData, i: number) => {
-        return <TableRow key={`tbr-${i}`} rowData={user.data} userId={user.id} />;
+        if (user.data[0].toLowerCase().startsWith(searchText.toLowerCase())) {
+          return (
+            <TableRow
+              key={`tbr-${i}`}
+              rowData={user.data}
+              userId={user.id}
+              called={user.subDataList.length > 0}
+              clicked={user.clicked}
+            />
+          );
+        }
       })}
     </Container>
   );
