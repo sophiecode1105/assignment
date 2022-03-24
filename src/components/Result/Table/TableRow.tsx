@@ -9,7 +9,6 @@ import LoadingIndicator from "../../../assets/Loading_Indicator.gif";
 
 const Container = styled.div`
   display: flex;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -78,11 +77,11 @@ const TableRow = ({ rowData, userId, called, clicked, hasClickedSubData }: Table
           } as UserSubData;
         }) as UserSubDataList;
         dispatch(updateUserSubDataList({ userId, sublist: userSubDataList }));
-        setLoaded(true);
       }
     } catch (e) {
       throw e;
     }
+    setLoaded(true);
   };
 
   return (
