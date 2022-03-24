@@ -18,6 +18,6 @@
 - Echo
 
 ### 사용방법
-레포지토리를 클론하고 아래 `command`를 사용해서 dependencies 설치를 합니다.
-```npm install```
-브라우저에 `localhost:8080` 접속합니다.
+- 레포지토리를 클론하고 ```npm install``` 사용해서 dependencies를 설치를 합니다.
+
+- 브라우저에 `localhost:8080` 접속합니다.
