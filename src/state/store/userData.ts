@@ -75,9 +75,38 @@ export const UserDataSlice = createSlice({
         }
       }
     },
+    checkAllSubItem: (state, action: PayloadAction<{ userId: string }>) => {
+      for (let i = 0; i < state.value.length; i++) {
+        if (state.value[i].id === action.payload.userId) {
+          state.value[i].clicked = state.value[i].subDataList.map((el) => el.data[0]);
+          state.value[i].subDataList = state.value[i].subDataList.map((el) => {
+            el.clicked = true;
+            return el;
+          });
+        }
+      }
+    },
+    clearSubItem: (state, action: PayloadAction<{ userId: string }>) => {
+      for (let i = 0; i < state.value.length; i++) {
+        if (state.value[i].id === action.payload.userId) {
+          state.value[i].clicked = [];
+          state.value[i].subDataList = state.value[i].subDataList.map((el) => {
+            el.clicked = false;
+            return el;
+          });
+        }
+      }
+    },
   },
 });
 
-export const { updateUserDataList, sortUserDataList, sortUserSubDataList, updateUserSubDataList, changeSubItemCheck } =
-  UserDataSlice.actions;
+export const {
+  updateUserDataList,
+  sortUserDataList,
+  sortUserSubDataList,
+  updateUserSubDataList,
+  changeSubItemCheck,
+  checkAllSubItem,
+  clearSubItem,
+} = UserDataSlice.actions;
 export default UserDataSlice.reducer;
