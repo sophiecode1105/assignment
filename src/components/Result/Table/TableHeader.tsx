@@ -23,16 +23,16 @@ const ColumnName = styled.h2`
 `;
 
 interface TableHeaderProps {
-  columConfigs: { name: string; sortKey: SortKey }[];
+  columnDetails: { name: string; sortKey: SortKey }[];
 }
 
-const TableHeader = ({ columConfigs }: TableHeaderProps) => {
+const TableHeader = ({ columnDetails }: TableHeaderProps) => {
   return (
     <Container>
-      {columConfigs.map((cc) => (
+      {columnDetails.map((c) => (
         <Column>
-          <ColumnName>{cc.name}</ColumnName>
-          {cc.sortKey ? <TableSortButton sortKey={cc.sortKey} /> : null}
+          <ColumnName>{c.name}</ColumnName>
+          {c.sortKey ? <TableSortButton sortKey={c.sortKey} /> : null}
         </Column>
       ))}
     </Container>

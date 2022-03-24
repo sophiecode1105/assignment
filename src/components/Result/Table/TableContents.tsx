@@ -11,7 +11,7 @@ const TableContents = () => {
 
   return (
     <Container>
-      {userData.map((user: UserData, i) => {
+      {userData.map((user: UserData, i: number) => {
         return <TableRow key={`tbr-${i}`} rowData={user.data} />;
       })}
     </Container>

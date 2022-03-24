@@ -1,14 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { FOX, GOLF } from "../../../model/constants";
-import { UserDataList, UserData, UserSubData, UserSubDataList } from "../../../model/user";
+import { UserSubData, UserSubDataList } from "../../../model/user";
 import { useAppDispatch } from "../../../state/store/hook";
 import { getResultByName } from "../../../utils/api/testapi";
 import TableHeader from "./TableHeader";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../state/store/store";
-import { updateUserDataList, updateUserSubDataList } from "../../../state/store/userData";
+import { updateUserSubDataList } from "../../../state/store/userData";
 import SubTableContent from "./SubTable/SubTableContent";
+import SubTable from "./SubTable/SubTable";
 
 const Container = styled.div`
   display: flex;
@@ -34,7 +33,7 @@ const Content = styled.div`
   min-height: 90px;
 `;
 
-const SubContentWrap = styled.div`
+const SubTableWrap = styled.div`
   width: 90%;
   display: flex;
   justify-content: space-around;
@@ -53,11 +52,7 @@ const TableRow = ({ rowData }: TableRowProps) => {
 
   let foxPrecise = foxTrot.toPrecision(5);
   let golfPrecise = golf.toPrecision(5);
-  let columnConfigs = [
-    { name: "id", sortKey: 0 },
-    { name: "Foxtrot", sortKey: FOX },
-    { name: "Golf", sortKey: GOLF },
-  ];
+
   const getSubData = async () => {
     try {
       if (!called) {
@@ -85,10 +80,9 @@ const TableRow = ({ rowData }: TableRowProps) => {
         <Content>{golfPrecise}</Content>
       </ContentWrap>
       {clicked ? (
-        <SubContentWrap>
-          <TableHeader columConfigs={columnConfigs} />
-          <SubTableContent userName={name} />
-        </SubContentWrap>
+        <SubTableWrap>
+          <SubTable userName={name} />
+        </SubTableWrap>
       ) : null}
     </Container>
   );

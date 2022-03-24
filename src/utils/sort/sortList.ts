@@ -1,4 +1,8 @@
-export const sortListByIdx = (list: { data: [string, number, number] }[], idx: number, direction: string) => {
+export const sortListByIdx = (
+  list: { data: [string, number, number] | number[] }[],
+  idx: number,
+  direction: string
+) => {
   if (direction === "ASC") {
     return list.sort((a, b) => Number(a.data[idx]) - Number(b.data[idx]));
   }

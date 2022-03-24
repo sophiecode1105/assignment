@@ -6,7 +6,7 @@ import { useAppDispatch } from "../../../state/store/hook";
 import { sortUserDataList } from "../../../state/store/userData";
 
 const Container = styled.div`
-  margin-left: 10px;x
+  margin-left: 10px;
 `;
 
 const Button = styled.div`
