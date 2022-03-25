@@ -59,7 +59,6 @@ const LoadingScreenWrap = styled.div`
 
 const TableRow = ({ rowData, userId, called, clicked, hasClickedSubData }: TableRowProps) => {
   const dispatch = useAppDispatch();
-  const [loaded, setLoaded] = useState<boolean>(false);
   const [name, foxTrot, golf] = rowData;
 
   let foxPrecise = foxTrot.toPrecision(5);
@@ -81,7 +80,6 @@ const TableRow = ({ rowData, userId, called, clicked, hasClickedSubData }: Table
     } catch (e) {
       throw e;
     }
-    setLoaded(true);
   };
 
   return (
@@ -91,11 +89,11 @@ const TableRow = ({ rowData, userId, called, clicked, hasClickedSubData }: Table
         <Content>{foxPrecise}</Content>
         <Content>{golfPrecise}</Content>
       </ContentWrap>
-      {clicked && loaded ? (
+      {called && clicked ? (
         <SubTableWrap>
           <SubTable userId={userId} />
         </SubTableWrap>
-      ) : clicked && !loaded ? (
+      ) : clicked && !called ? (
         <LoadingScreenWrap>
           <LoadingScreen src={LoadingIndicator} />
         </LoadingScreenWrap>
