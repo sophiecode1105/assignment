@@ -12,12 +12,14 @@ const Container = styled.div`
 const SearchWrap = styled.div`
   display: flex;
   justify-content: cener;
-  flex: 0.72;
+  width: 100%;
+  min-width: 100px;
 `;
 
 const SearchBar = styled.input`
+  display: flex;
   height: 55px;
-  flex: 0.72;
+  width: 100%;
   font-size: 1.5em;
   border: 1px solid #7879f1;
   box-sizing: border-box;
@@ -33,7 +35,7 @@ const Button = styled.button`
   text-align: center;
   height: 55px;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.2em;
   line-height: 29px;
   border: 1px solid #7879f1;
   color: #7879f1;
@@ -41,11 +43,12 @@ const Button = styled.button`
   cursor: pointer;
 `;
 const SearchButton = styled(Button)`
-  flex: 0.28;
+  width: 40%;
 `;
 
 const DownloadButton = styled(Button)`
-  flex: 0.24;
+  width: 28%;
+  margin-left: 3%;
 `;
 
 const Search = () => {

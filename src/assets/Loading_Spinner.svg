@@ -1,8 +1,7 @@
 <svg version="1.1" viewBox="-58 -58 116 116" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> 
 <style type="text/css">
 .spinner{
-    <!-- opacity: 0; -->
-    <!-- animation: loading 2s infinite; -->
+     stroke: rgba(37,147,139);
 }
 @keyframes loading {
     from {
