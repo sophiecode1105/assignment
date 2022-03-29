@@ -1,6 +1,6 @@
-# Hits-Assignment
+# Assignment
 
-<h2>Hits Frontend 과제</h2>
+<h2>Frontend 과제</h2>
 
 ### 기능
 **RESULT**
