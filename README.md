@@ -1,7 +1,3 @@
-# Assignment
-
-<h2>Frontend 과제</h2>
-
 ### 기능
 **RESULT**
 - 여러 유저들의 Foxtrot 과 Golf를 볼 수 있습니다.
